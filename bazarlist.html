@@ -1,0 +1,59 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title>Todo || Bazar List</title>
+	<link rel="stylesheet" href="content/css/bootstrap.min.css">
+	<script src="script/angular.js"></script>
+	<script src="content/js/jquery.min.js"></script>
+	<script src="content/js/bootstrap.min.js"></script>
+</head>
+<body ng-app="myApp">
+	<div class="container-fluid" ng-controller="bazarCtrl" ng-cloak>
+		<div class="panel panel-default">
+			<div class="panel-heading">
+				<h3 class="text-center text-success">Bazar list</h3>
+			</div>
+			<div class="panel-body">
+				<form ng-submit="addItem()">
+					<div class="col-md-7 col-md-offset-2">
+						<div class="col-md-5">
+							<input type="text" name="" ng-model="item" placeholder="Add item" class="form-control">
+						</div>
+						<div class="col-md-5">
+							<input type="text" name="" ng-model="price" placeholder="Add price" class="form-control">
+						</div>
+					</div>
+					<input type="submit"  value="Add" style="display:none;" class="btn btn-primary">					
+					<p class="text-warning"> {{ error }}</p>
+				</form>
+				<div class="col-md-12">&nbsp;</div>
+				<table class="table table-bordered table-hover">
+					<tr>
+						<th class="text-center" > SL </th>
+						<th class="text-center" > Item Name </th>
+						<th class="text-center" > Price </th>
+						<th class="text-center" > Action </th>
+					</tr>
+					<tr ng-repeat="item in list">
+						<td class="text-center" > {{ $index + 1 }} </td>
+						<td class="text-center" > {{ item.itemName | uppercase }} </td>
+						<td class="text-center" > {{ item.price | currency }} </td>
+						<td class="text-center" >  
+						<a title="Delete" class="btn btn-danger" onclick="return confirm('Do you want to delete this Item?');" ng-click="removeItem($index)" ><i class="fa fa-trash-o" aria-hidden="true">Delete</i></a>
+						</td>
+					</tr>
+					<tr>
+						<th colspan="2"><span class="pull-right"> Total </span></th>
+						<th class="text-center">{{ total() | currency }}</th>
+						<td></td>
+					</tr>
+				</table>
+			</div>
+			<div class="panel-footer">
+				<p class="text-center text-primary">Copyright @MohammadSheam</p>
+			</div>
+		</div>
+	</div>
+	<script src="script/bazarScript.js"></script>
+</body>
+</html>
